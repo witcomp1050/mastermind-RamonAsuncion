@@ -2,7 +2,7 @@ package me.ramonasuncion;
 
 import java.util.Random;
 
-public class RandomCode {
+public class CodeMaker {
 
     /**
      * Generates a random code (Blue, Green, Orange, Purple, Red, Yellow)
