@@ -96,3 +96,43 @@ more confusing. As a general rule: _get the data structures and algorithms worki
 to ensure that when you add a GUI, you don't need to worry about the application's foundation. 
 
 ---
+
+
+## Collected from videos
+
+
+mastermind board which has 10 rows on it in each row 
+there are 4 slots for the code rigor to placetheir guesses next to each set of fourslots there are 
+4smaller slots forthe mastermind to place their feedbackfor each guess to start one player is
+the mastermind and the other player is
+the codebreaker
+
+
+the mastermind creates the secret code by putting four colored balls in any order 
+
+the code breaker can place any of the six to eight colored balls in any order 
+
+initial guess next the mastermind provides feedback on their guesses by putting 4 black or white balls in the smaller openings at the end of the row
+
+if the mastermind places a white ball down it means you placed a correct color in the wrong position 
+
+if they place a black ball in one of the slots you put a correct color in the correct position
+
+this means that if you have two of the colored balls in the correct sequence
+ ou will get two black balls if you have
+two colored balls in the right order and
+two of the other colors are correct but
+misplaced you will get two black and two
+white balls keep in mind the order of
+
+the masterminds feedback does not match
+the order of the balls on the board so
+just because the mastermind placed a
+black ball in the first slot it does not
+necessarily mean that the codebreakers
+first ball is correct after the
+mastermind provides their feedback t
+
+
+
+
