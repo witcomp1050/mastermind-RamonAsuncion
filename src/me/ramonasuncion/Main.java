@@ -6,11 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
-
+public class Main extends Application
+{
+hj
     @Override
-    public void start(Stage primaryStage) throws Exception{
-
+    public void start(Stage primaryStage) throws Exception
+    {
 
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("sample.fxml"));
         Parent root =  loader.load();
@@ -23,7 +24,11 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
+        CodeMaker solution = new CodeMaker();
+        System.out.println("The solution is: " + solution.randomColorCombination());
         launch(args);
+
     }
 }
