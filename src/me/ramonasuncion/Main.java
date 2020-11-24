@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application
 {
-hj
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -23,12 +22,5 @@ hj
         primaryStage.show();
     }
 
-
-    public static void main(String[] args)
-    {
-        CodeMaker solution = new CodeMaker();
-        System.out.println("The solution is: " + solution.randomColorCombination());
-        launch(args);
-
-    }
+    public static void main(String[] args) { launch(args); }
 }

@@ -2,7 +2,10 @@ package me.ramonasuncion;
 
 import java.util.Random;
 
-public class CodeMaker {
+public class CodeMaker
+{
+
+    public String[] colors = new String[]{"B", "G", "O", "P", "R", "Y"};
 
     /**
      * Generates a random code (Blue, Green, Orange, Purple, Red, Yellow)
@@ -10,14 +13,11 @@ public class CodeMaker {
      */
     public String randomColorCombination()
     {
-        final String[] colors = {"B", "G", "O", "P", "R", "Y"};
-
         StringBuilder randomCode = new StringBuilder();
         Random generator = new Random();
-
         int codeLength = 4; // DEFAULT MAX COLORS MASTERMIND
-
-        for (int i = 0; i < codeLength; i++) {
+        for (int i = 0; i < codeLength; i++)
+        {
             int elementOfArray = generator.nextInt(colors.length);
             randomCode.append(colors[elementOfArray]);
         }
