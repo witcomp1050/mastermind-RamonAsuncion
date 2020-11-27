@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class CodeMaker
 {
-
     public String[] colors = new String[]{"B", "G", "O", "P", "R", "Y"};
 
     /**
