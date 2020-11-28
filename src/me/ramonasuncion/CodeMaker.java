@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class CodeMaker
 {
+    public String[] colors = new String[]{"B", "G", "O", "P", "R", "Y"};
+
     /**
      * Generates a random code (Blue, Green, Orange, Purple, Red, Yellow)
      * @return the generated code
@@ -20,6 +22,4 @@ public class CodeMaker
         }
         return randomCode.toString();
     }
-
-    public String[] colors = new String[]{"B", "G", "O", "P", "R", "Y"};
 }

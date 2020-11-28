@@ -3,18 +3,31 @@ package me.ramonasuncion;
 import java.io.File;
 
 import org.apache.commons.configuration2.PropertiesConfiguration;
+import org.apache.commons.configuration2.ex.ConfigurationException;
+import org.apache.commons.configuration2.builder.fluent.Configurations;
+
 
 public class ConfigGame
 {
-
     public ConfigGame(String propertiesFileName)
     {
-        configFile = new File(getClass().getResource(propertiesFileName).getFile());
 
+        try {
+            configFile = new File(getClass().getResource(propertiesFileName).getFile());
+            if (!configFile.exists() && configFile.isDirectory())
+            {
+                return;
+            }
+            else {
+                var configuration = new Configurations();
+                config = configuration.properties(configFile);
+            }
+        } catch(ConfigurationException cex) {
+            System.out.println(cex.getMessage());
+            System.exit(1);
+        }
     }
 
-
-    //<editor-fold desc="get config vars">
     public boolean isDuplicationsAreAllowed() { return duplicationsAreAllowed; }
 
     public boolean isBlanksAreAllowed() { return blanksAreAllowed; }
@@ -22,8 +35,6 @@ public class ConfigGame
     public int getCodeLength() { return codeLength; }
 
     public int getNumberOfRows() { return numberOfRows; }
-    //</editor-fold>
-    
 
     private boolean duplicationsAreAllowed;
     private boolean blanksAreAllowed;
