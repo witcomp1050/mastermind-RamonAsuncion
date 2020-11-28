@@ -1,12 +1,10 @@
 package me.ramonasuncion;
 
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class CodeBreaker {
+    //Make a guess class
 
-    // Make an algorithm to count the number of black and white
-
-
-    // White ball = Correct color in the wrong position
-    // Black ball = Correct color in the correct position
-    // the masterminds feedback does not match the order of the balls on the board
 }
