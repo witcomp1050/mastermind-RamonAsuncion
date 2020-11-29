@@ -7,4 +7,5 @@ import java.util.Scanner;
 public class CodeBreaker {
     //Make a guess class
 
+
 }

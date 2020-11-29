@@ -19,7 +19,7 @@ public class ConfigGame
                 return;
             }
             else {
-                var configuration = new Configurations();
+                Configurations configuration = new Configurations();
                 config = configuration.properties(configFile);
             }
         } catch(ConfigurationException cex) {

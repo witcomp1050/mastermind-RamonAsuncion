@@ -12,9 +12,11 @@ public class CodeMaker
      */
     public String randomColorCombination()
     {
+
+        int codeLength = 4; // DEFAULT MAX COLORS MASTERMIND
+
         StringBuilder randomCode = new StringBuilder();
         Random generator = new Random();
-        int codeLength = 4; // DEFAULT MAX COLORS MASTERMIND
         for (int i = 0; i < codeLength; i++)
         {
             int elementOfArray = generator.nextInt(colors.length);
