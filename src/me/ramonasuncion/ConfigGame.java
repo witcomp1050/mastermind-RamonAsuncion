@@ -9,9 +9,9 @@ import org.apache.commons.configuration2.builder.fluent.Configurations;
 
 public class ConfigGame
 {
+    // Get the properties file
     public ConfigGame(String propertiesFileName)
     {
-
         try {
             configFile = new File(getClass().getResource(propertiesFileName).getFile());
             if (!configFile.exists() && configFile.isDirectory())
@@ -28,6 +28,7 @@ public class ConfigGame
         }
     }
 
+    // (Encapsulation) Methods to get the variable value of private class variables.
     public boolean isDuplicationsAreAllowed() { return duplicationsAreAllowed; }
 
     public boolean isBlanksAreAllowed() { return blanksAreAllowed; }
@@ -36,6 +37,8 @@ public class ConfigGame
 
     public int getNumberOfRows() { return numberOfRows; }
 
+
+    // Member variables
     private boolean duplicationsAreAllowed;
     private boolean blanksAreAllowed;
     private int codeLength;
