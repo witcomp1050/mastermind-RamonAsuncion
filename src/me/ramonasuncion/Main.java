@@ -22,5 +22,32 @@ public class Main extends Application
         primaryStage.show();
     }
 
-    public static void main(String[] args) { launch(args); }
+    public static void main(String[] args) {
+//        CodeMaker make = new CodeMaker();
+//
+//        int[] nums = new int[] {-1, -1, -1, -1};
+//        int[] randomCode = make.codeConverstionToIntegers(make.makeRandomCode());
+//        int[] feedback = make.scoreGuess(nums, randomCode);
+//        /*
+//        Now, feedback[0] = number of black pegs
+//        feedback[1] = number of white pegs
+//          */
+//
+//        if (feedback[0]==4) { //if player has won
+//            System.out.print("WIN!");
+//        }
+//
+//        if(feedback[0] > 0){
+//            System.out.println("Hello");
+//            feedback[0]--;
+//        }
+//        if(feedback[1] > 0){
+//            System.out.println("World");
+//            feedback[1]--;
+//        }
+
+        launch(args);
+    }
 }
+
+
