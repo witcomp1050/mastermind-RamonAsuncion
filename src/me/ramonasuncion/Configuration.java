@@ -7,20 +7,16 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 
 
-public class ConfigGame
+public class Configuration
 {
     // Get the properties file
-    public ConfigGame(String propertiesFileName)
+    public Configuration(String propertiesFileName)
     {
+        //<editor-fold desc="...">
         try {
             configFile = new File(getClass().getResource(propertiesFileName).getFile());
             if (!configFile.exists() && configFile.isDirectory())
             {
-                // Set Defaults
-
-
-
-
                 return;
             }
             else {
@@ -31,15 +27,15 @@ public class ConfigGame
             System.out.println(cex.getMessage());
             System.exit(1);
         }
+        //</editor-fold>
     }
+
+
 
     // (Encapsulation) Methods to get the variable value of private class variables.
     public boolean isDuplicationsAreAllowed() { return duplicationsAreAllowed; }
-
     public boolean isBlanksAreAllowed() { return blanksAreAllowed; }
-
     public int getCodeLength() { return codeLength; }
-
     public int getNumberOfRows() { return numberOfRows; }
 
 
