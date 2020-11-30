@@ -9,16 +9,13 @@ public class ScoreFromGuess {
 
     // Make a get the black pegs method and a white one here
 
+    public void returnBlackPegs(){
+
+    }
+
+    public void returnWhitePegs(){
+
+    }
 
 
-    //get the code maker solution
-
-
-    //get the code breaker guess
-
-
-    // get the number of guess
-
-
-    //print out the solution
 }
