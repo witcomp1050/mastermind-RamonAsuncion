@@ -1,6 +1,5 @@
 package me.ramonasuncion;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -8,6 +7,8 @@ public class CodeMaker
 {
     public String makeRandomCode()
     {
+        //<editor-fold desc="...">
+
         int codeLength = 4; // DEFAULT MAX COLORS MASTERMIND
 
         StringBuilder randomCode = new StringBuilder();
@@ -22,10 +23,12 @@ public class CodeMaker
         System.out.println("Solution: " + randomCode.toString());
 
         return randomCode.toString();
+        //</editor-fold>
     }
 
     public int[] scoreGuess(int[] currentGuess, int[] randomCode)
     {
+        //<editor-fold desc="...">
 
         int[] _randomCode = new int[4], _currentGuess = new int[4];
         int countBlackPegs = 0, countWhitePegs = 0;
@@ -80,43 +83,50 @@ public class CodeMaker
         System.out.print("The number of pegs" + Arrays.toString(result));
 
         return result;
+        //</editor-fold>
     }
 
-    public void getSolution(){}
-
-
-
-
-
+    public void getSolution()
+    {
+        
+    }
 
 
     // Convert the code into integers (easier to handle ints)
-    public int[] codeConverstionToIntegers(String randomCode){
+    public int[] codeConverstionToIntegers(String randomCode)
+    {
+        //<editor-fold desc="...">
         int[] codeIntegers = new int[4];
         char[] characters = randomCode.toCharArray();
 
         for (int x = 0; x < randomCode.length(); x++)
         {
-            switch (characters[x]) {
+            switch (characters[x])
+            {
                 case 'B':
                     codeIntegers[x] = 0; break;
+
                 case 'G':
                     codeIntegers[x] = 1; break;
+
                 case 'O':
                     codeIntegers[x] = 2; break;
+
                 case 'P':
                     codeIntegers[x] = 3; break;
+
                 case 'R':
                     codeIntegers[x] = 4; break;
+
                 case 'Y':
                     codeIntegers[x] = 5; break;
             }
         }
-
         // Debug
         System.out.println("Code in ints " + Arrays.toString(codeIntegers));
 
         return codeIntegers;
+        //</editor-fold>
     }
 
     public final String[] colors = new String[]{"B", "G", "O", "P", "R", "Y"};
