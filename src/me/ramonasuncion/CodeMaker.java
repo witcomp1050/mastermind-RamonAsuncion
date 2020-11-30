@@ -1,5 +1,7 @@
 package me.ramonasuncion;
 
+import org.apache.commons.configuration2.BaseConfiguration;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -24,7 +26,7 @@ public class CodeMaker
         //</editor-fold>
     }
 
-    // Gives feedback with blck and white pegs.
+    // Gives feedback with black and white pegs.
     public int[] scoreGuess(int[] currentGuess, int[] randomCode)
     {
         //<editor-fold desc="...">
@@ -51,7 +53,7 @@ public class CodeMaker
             }
         }
 
-        // Test case countinue
+        // Test case continue
         for (int i = 0; i < randomCode.length; i++)
         {
             if (_randomCode[i] == -1) {
@@ -59,17 +61,15 @@ public class CodeMaker
             }
 
             // White Beg Counter
-            for (int j=0;j < randomCode.length; j++)
+            for (int j = 0;j < randomCode.length; j++)
             {
                 if (_currentGuess[j] == -1)
-                {
                     continue;
-                }
 
                 if (_randomCode[i] == _currentGuess[j])
                 {
                     countWhitePegs++;
-                    _randomCode[i]=-1;
+                    _randomCode[i]=-1; // From past black counter
                     _currentGuess[j]=-1;
                 }
             }
@@ -86,7 +86,7 @@ public class CodeMaker
     }
 
     // Convert the code into integers (easier to handle ints)
-    public int[] codeConverstionToIntegers(String randomCode)
+    public int[] covertToIntegers(String randomCode)
     {
         //<editor-fold desc="...">
         int[] codeIntegers = new int[4];
@@ -124,6 +124,11 @@ public class CodeMaker
 
     // Blue, Green, Oragne, Purple, Red, Yellow
     public final String[] colors = new String[]{"B", "G", "O", "P", "R", "Y"};
+
+
+    // Debugging as of now
+    Configuration configs = new Configuration("mmind.properties");
+
+
+
 }
-
-
