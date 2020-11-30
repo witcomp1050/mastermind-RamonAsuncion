@@ -16,6 +16,11 @@ public class ConfigGame
             configFile = new File(getClass().getResource(propertiesFileName).getFile());
             if (!configFile.exists() && configFile.isDirectory())
             {
+                // Set Defaults
+
+
+
+
                 return;
             }
             else {
