@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class CodeMaker
 {
+    // Generates a random Code
     public String makeRandomCode()
     {
         //<editor-fold desc="...">
@@ -19,13 +20,11 @@ public class CodeMaker
             randomCode.append(colors[elementOfArray]);
         }
 
-        // Debug
-        System.out.println("Solution: " + randomCode.toString());
-
         return randomCode.toString();
         //</editor-fold>
     }
 
+    // Gives feedback with blck and white pegs.
     public int[] scoreGuess(int[] currentGuess, int[] randomCode)
     {
         //<editor-fold desc="...">
@@ -86,12 +85,6 @@ public class CodeMaker
         //</editor-fold>
     }
 
-    public void getSolution()
-    {
-        
-    }
-
-
     // Convert the code into integers (easier to handle ints)
     public int[] codeConverstionToIntegers(String randomCode)
     {
@@ -129,6 +122,7 @@ public class CodeMaker
         //</editor-fold>
     }
 
+    // Blue, Green, Oragne, Purple, Red, Yellow
     public final String[] colors = new String[]{"B", "G", "O", "P", "R", "Y"};
 }
 
