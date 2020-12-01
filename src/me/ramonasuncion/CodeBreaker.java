@@ -1,6 +1,6 @@
 package me.ramonasuncion;
 
-
+//<editor-fold desc="imports">
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
@@ -18,12 +18,15 @@ import javafx.stage.Stage;
 
 import static javafx.scene.layout.AnchorPane.setLeftAnchor;
 import static javafx.scene.layout.AnchorPane.setTopAnchor;
+//</editor-fold>
+
 
 public class CodeBreaker {
 
 
     public void playAgain(boolean winTheGame, Stage stag)
     {
+        //<editor-fold desc="...">
         Stage stage = new Stage();
         AnchorPane play = new AnchorPane();
         Scene scene = new Scene(play, 300, 100);
@@ -77,6 +80,7 @@ public class CodeBreaker {
 
         stage.setScene(scene);
         stage.show();
+        //</editor-fold>
     }
 
     public void colorChange(int element, Shape shape)
