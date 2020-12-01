@@ -61,16 +61,16 @@ public class CodeBreaker {
         //</editor-fold>
     }
 
-    private void createCircle(Stage stage)
+    private void createCircle(AnchorPane game, Stage stage)
     {
         //<editor-fold desc="...">
         HBox guessing = new HBox();
-        guessing.setSpacing(25);
+        guessing.setSpacing(25.0);
 
 
         for(int i = 0; i < 4; i++)
         {
-            Circle createCircle = new Circle(15);
+            Circle createCircle = new Circle(15.0);
             guessing.getChildren().add(createCircle);
             colorChange(i, createCircle);
         }
@@ -84,7 +84,7 @@ public class CodeBreaker {
 
         for(int i = 0; i < 4; i++) // The 4 is the codeLength.
         {
-            Circle feedbackCircles = new Circle(25);
+            Circle feedbackCircles = new Circle(25.0);
             // Checks if there is a value in the element ands fills for black pegs.
 
             if(feedbackPegs[0] > 0)
@@ -111,6 +111,7 @@ public class CodeBreaker {
 
     public void initalizeCodeBreaker()
     {
+        //<editor-fold desc="...">
         Stage stage = new Stage();
         AnchorPane game = new AnchorPane();
         Scene scene = new Scene(game, 1000, 700);
@@ -123,32 +124,42 @@ public class CodeBreaker {
         {
             Circle createCircle = new Circle(15);
             guessOptions.getChildren().add(createCircle);
-            int finalI = i;
-            createCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            int tempI = i;
+            createCircle.setOnMouseClicked(new EventHandler<MouseEvent>()
+            {
                 @Override
-                public void handle(MouseEvent mouseEvent) {
-                    colorToggleOnClick(finalI, createCircle);
+                public void handle(MouseEvent mouseEvent)
+                {
+                    colorToggleOnClick(tempI, createCircle);
                 }
             });
-            setTopAnchor(createCircle, 30.0);
-            setLeftAnchor(createCircle, 270.0);
+            setTopAnchor(createCircle, 40.0);
+            setLeftAnchor(createCircle, 250.0);
         }
 
         Button submitGuess = new Button("Submit Guess");
-        submitGuess.setOnAction(new EventHandler<ActionEvent>() {
+        submitGuess.setOnAction(new EventHandler<ActionEvent>()
+        {
             @Override
             public void handle(ActionEvent actionEvent)
             {
-               createCircle(stage);
+               createCircle(game, stage);
             }
         });
 
         // Size for guess button
-        submitGuess.setPrefHeight(50.0);
-        submitGuess.setPrefWidth(120.0);
+        submitGuess.setPrefHeight(50);
+        submitGuess.setPrefWidth(100);
 
         setTopAnchor(submitGuess, 25.0);
         setLeftAnchor(submitGuess, 560.0);
+
+        game.getChildren().addAll(guessOptions, submitGuess);
+
+        stage.setScene(scene);
+        stage.show();
+
+        //</editor-fold>
     }
 
 
@@ -162,8 +173,10 @@ public class CodeBreaker {
     }
 
     // Member variables
-    int index;
+    //<editor-fold desc="...">
+    int element;
     CodeMaker codeCreator;
     int[] randomGeneratedCode;
     int[] numbers;
+    //</editor-fold>
 }
