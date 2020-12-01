@@ -82,7 +82,7 @@ public class CodeMaker
         gussedPegs[1] = countWhitePegs;
 
         // Debug
-        System.out.print("The number of pegs" + Arrays.toString(gussedPegs) + " ");
+        // System.out.print("The number of pegs" + Arrays.toString(gussedPegs) + " ");
 
         return gussedPegs;
         //</editor-fold>
