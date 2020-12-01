@@ -99,22 +99,22 @@ public class CodeMaker
         {
             switch (characters[x]) {
                 case 'B':
-                    codeIntegers[x] = 0;
-                    break;
-                case 'G':
                     codeIntegers[x] = 1;
                     break;
-                case 'O':
+                case 'G':
                     codeIntegers[x] = 2;
                     break;
-                case 'P':
+                case 'O':
                     codeIntegers[x] = 3;
                     break;
-                case 'R':
+                case 'P':
                     codeIntegers[x] = 4;
                     break;
-                case 'Y':
+                case 'R':
                     codeIntegers[x] = 5;
+                    break;
+                case 'Y':
+                    codeIntegers[x] = 6;
                     break;
             }
         }
@@ -123,10 +123,6 @@ public class CodeMaker
 
         return codeIntegers;
         //</editor-fold>
-    }
-
-    public void getSolution() {
-
     }
 
     // Blue, Green, Orange, Purple, Red, Yellow
