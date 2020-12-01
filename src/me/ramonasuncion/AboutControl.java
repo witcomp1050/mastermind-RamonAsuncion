@@ -4,9 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class ConfigurationControl
+public class AboutControl
 {
-
     @FXML
     Button btnExit;
 
@@ -18,6 +17,7 @@ public class ConfigurationControl
         });
     }
 
+    // Casting button Stage exit out
     private void exitAboutScene(){
         Stage s = (Stage)btnExit.getScene().getWindow();
         s.close();

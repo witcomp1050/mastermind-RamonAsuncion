@@ -25,37 +25,38 @@ public class Configuration
         //<editor-fold desc="...">
         try {
             configFile = new File(getClass().getResource(propertiesFileName).getFile());
+            Configurations configurations = new Configurations();
+
             if (!configFile.exists() && configFile.isDirectory())
             {
                 defaults();
             }
             else {
-                Configurations configuration = new Configurations();
-                config = configuration.properties(configFile);
+                config = configurations.properties(configFile);
             }
-        } catch(ConfigurationException cex) {
+        } catch(ConfigurationException cex)
+        {
             System.out.println(cex.getMessage());
             System.exit(1);
         }
         //</editor-fold>
-
     }
 
-    // Default if properties fails
+    // Rewrites the mmind.properties file if not found
     public void defaults()
     {
         //<editor-fold desc="...">
         try
         {
-            FileWriter myWriter = new FileWriter("assets/mmind.properties");
-            myWriter.write("# Mastermind Properties File (mmind.properties)\n" +
+            FileWriter writeMMIND = new FileWriter("assets/mmind.properties");
+            writeMMIND.write("# Mastermind Properties File (mmind.properties)\n" +
                     "codeSize = 4\n" +
                     "codePegRows = 10\n" +
                     "dupsAllowedInCode = true\n" +
                     "blanksAllowedInCode = false\n" +
                     "playSounds = true\n" +
                     "maxTime = 0");
-            myWriter.close();
+            writeMMIND.close();
         }
         catch (IOException e)
         {
@@ -67,10 +68,7 @@ public class Configuration
 
     // (Encapsulation) Methods to get the variable value of private class variables.
     public boolean isDuplicationsAreAllowed() { return duplicationsAreAllowed; }
-
     public boolean isBlanksAreAllowed() { return blanksAreAllowed; }
-
     public int getCodeLength() { return codeLength; }
-
     public int getNumberOfRows() { return numberOfRows; }
 }
