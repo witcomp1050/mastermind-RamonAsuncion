@@ -26,10 +26,10 @@ public class CodeBreaker {
     {
         Stage stage = new Stage();
         AnchorPane play = new AnchorPane();
-        Scene scene = new Scene(play, 500, 500);
+        Scene scene = new Scene(play, 300, 100);
         Label paragraph = new Label();
         setTopAnchor(paragraph, 10.0);
-        setLeftAnchor(paragraph, 100.0);
+        setLeftAnchor(paragraph, 40.0);
 
         if(winTheGame)
         {
@@ -44,6 +44,12 @@ public class CodeBreaker {
         }
 
         Button again = new Button("Play");
+        setTopAnchor(again, 50.0);
+        setLeftAnchor(again, 50.0);
+        again.setPrefHeight(20.0);
+        again.setPrefWidth(90.0);
+
+
         again.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -55,14 +61,19 @@ public class CodeBreaker {
             }});
 
         Button leave = new Button("Exit");
-        again.setOnAction(new EventHandler<ActionEvent>() {
+        setTopAnchor(leave, 50.0);
+        setLeftAnchor(leave, 180.0);
+        leave.setPrefHeight(20.0);
+        leave.setPrefWidth(90.0);
+
+
+        leave.setOnAction(new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent event) { System.exit(0); }
           });
 
 
         play.getChildren().addAll(paragraph, again, leave);
-
 
         stage.setScene(scene);
         stage.show();
@@ -212,8 +223,7 @@ public class CodeBreaker {
                 {
                     createCircle(game, stage);
                 }
-                else
-                {
+                else{
                     playAgain(false, stage);
                 }
             }
