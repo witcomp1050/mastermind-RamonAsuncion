@@ -19,7 +19,7 @@ public class AboutControl
 
     // Casting button Stage exit out
     private void exitAboutScene(){
-        Stage s = (Stage)btnExit.getScene().getWindow();
-        s.close();
+        Stage stage = (Stage)btnExit.getScene().getWindow();
+        stage.close();
     }
 }

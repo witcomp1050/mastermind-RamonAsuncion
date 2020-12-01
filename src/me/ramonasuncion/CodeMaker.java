@@ -1,6 +1,5 @@
 package me.ramonasuncion;
 
-
 import java.util.Arrays;
 import java.util.Random;
 
@@ -101,25 +100,25 @@ public class CodeMaker
         {
             switch (characters[x]) {
                 case 'B':
-                    codeIntegers[x] = 0;
-                    break;
-                case 'G':
                     codeIntegers[x] = 1;
                     break;
-                case 'O':
+                case 'G':
                     codeIntegers[x] = 2;
                     break;
-                case 'P':
+                case 'O':
                     codeIntegers[x] = 3;
                     break;
-                case 'R':
+                case 'P':
                     codeIntegers[x] = 4;
                     break;
-                case 'Y':
+                case 'R':
                     codeIntegers[x] = 5;
                     break;
-                case ' ':
+                case 'Y':
                     codeIntegers[x] = 6;
+                    break;
+                case ' ':
+                    codeIntegers[x] = 7;
                     break;
             }
         }
@@ -128,9 +127,7 @@ public class CodeMaker
         //</editor-fold>
     }
 
-
-
     // Blue, Green, Orange, Purple, Red, Yellow
     public final String[] colors = new String[]{"B", "G", "O", "P", "R", "Y"};
-    public int codeLength;
+    public int _codeLength;
 }

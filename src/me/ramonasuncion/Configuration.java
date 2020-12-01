@@ -16,15 +16,13 @@ public class Configuration
     private boolean blanksAreAllowed;
     private int codeLength;
     private int numberOfRows;
-    private PropertiesConfiguration config;
-    private File configFile;
 
     // Get the properties file
     public Configuration(String propertiesFileName)
     {
         //<editor-fold desc="...">
         try {
-            configFile = new File(getClass().getResource(propertiesFileName).getFile());
+            File configFile = new File(getClass().getResource(propertiesFileName).getFile());
             Configurations configurations = new Configurations();
 
             if (!configFile.exists() && configFile.isDirectory())
@@ -32,7 +30,7 @@ public class Configuration
                 defaults();
             }
             else {
-                config = configurations.properties(configFile);
+                PropertiesConfiguration config = configurations.properties(configFile);
             }
         } catch(ConfigurationException cex)
         {
