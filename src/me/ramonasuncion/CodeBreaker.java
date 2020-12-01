@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,9 +22,50 @@ import static javafx.scene.layout.AnchorPane.setTopAnchor;
 public class CodeBreaker {
 
 
-    public void playAgain(boolean won, Stage stage)
+    public void playAgain(boolean winTheGame, Stage stag)
     {
+        Stage stage = new Stage();
+        AnchorPane play = new AnchorPane();
+        Scene scene = new Scene(play, 500, 500);
+        Label paragraph = new Label();
+        setTopAnchor(paragraph, 10.0);
+        setLeftAnchor(paragraph, 100.0);
 
+        if(winTheGame)
+        {
+            stage.setTitle("Mastermind: You have won!");
+            paragraph.setText("Thank you for playing. " +
+                    "You have successfully beaten the mastermind!");
+        }
+        else
+        {
+            stage.setTitle("Mastermind: You lost!");
+            paragraph.setText("Thank you for playing. Better luck next time");
+        }
+
+        Button again = new Button("Play");
+        again.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                stage.close();
+                stag.close();
+                (new CodeBreaker()).initalizeCodeBreaker();
+            }});
+
+        Button leave = new Button("Exit");
+        again.setOnAction(new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) { System.exit(0); }
+          });
+
+
+        play.getChildren().addAll(paragraph, again, leave);
+
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void colorChange(int element, Shape shape)
@@ -86,6 +128,12 @@ public class CodeBreaker {
 
         int[] feedbackPegs = codeCreator.scoreGuess(numbers, randomGeneratedCode);
 
+        // Win the Game by having 4 black pegs
+        if (feedbackPegs[0] == 4)
+        {
+            playAgain(true, stage);
+        }
+
         for(int i = 0; i < 4; i++) // The 4 is the codeLength by default.
         {
             Circle feedbackCircles = new Circle(18.0); // Feedback circles
@@ -115,19 +163,12 @@ public class CodeBreaker {
         seperate1.setOrientation(Orientation.VERTICAL);
         feedback.getChildren().add(seperate1);
 
-        // Win the Game by having 4 black pegs
-        if (feedbackPegs[0] == 4)
-        {
-            playAgain(true, stage);
-        }
-
         // Starts from the bottom due to element--; and with the element value then continues to space it out.
         setTopAnchor(feedback, element * 60.0);
-        setLeftAnchor(feedback, 280.0);
-
-        //</editor-fold>
+        setLeftAnchor(feedback, 305.0);
 
         game.getChildren().add(feedback); // Get child component
+        //</editor-fold>
     }
 
 
@@ -145,7 +186,7 @@ public class CodeBreaker {
 
         for(int i = 0; i < 4; i++)
         {
-            Circle createCircle = new Circle(18.0);
+            Circle createCircle = new Circle(23.0);
             guessOptions.getChildren().add(createCircle);
             int tempI = i;
             createCircle.setOnMouseClicked(new EventHandler<MouseEvent>()
@@ -166,10 +207,15 @@ public class CodeBreaker {
             @Override
             public void handle(ActionEvent actionEvent)
             {
-                if (numberofRows > 0 && numberofRows <= 10) {
+                numberofRows++;
+                if (numberofRows > 0 && numberofRows <= 10)
+                {
                     createCircle(game, stage);
                 }
-                ++numberofRows;
+                else
+                {
+                    playAgain(false, stage);
+                }
             }
         });
 
