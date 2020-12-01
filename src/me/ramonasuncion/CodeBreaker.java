@@ -6,16 +6,40 @@ import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
-import javafx.stage.Stage;
 
 import static javafx.scene.layout.AnchorPane.setLeftAnchor;
 import static javafx.scene.layout.AnchorPane.setTopAnchor;
 
 public class CodeBreaker {
+    
+    public void choosePeg()
+    {
+        HBox guessOptions = new HBox();
+        guessOptions.setSpacing(25);
+
+        for(int i = 0; i < 4; i++)
+        {
+            Circle createCircle = new Circle(15);
+            guessOptions.getChildren().add(createCircle);
+            int finalI = i;
+            createCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    colorToggleOnClick(finalI, createCircle);
+                }
+            });
+        }
+    }
+
+    public void playAgain(boolean won)
+    {
+
+    }
     //Make a guess class
     public void scoreGuess()
     {
@@ -25,21 +49,13 @@ public class CodeBreaker {
             @Override
             public void handle(ActionEvent actionEvent)
             {
-                if (index > 0 && index <= 10) // Subject to change just makes sure that there is 10 rows 
-                {
-                    System.out.println("Debug: Sumbit Guess clicked");
-                    createCircle();
-                }
-                else
-                {
-                    playAgain(false);
-                }
             }
         });
 
         // Size for guess button
         submitGuess.setPrefHeight(50.0);
         submitGuess.setPrefWidth(120.0);
+
         setTopAnchor(submitGuess, 25.0);
         setLeftAnchor(submitGuess, 560.0);
         //</editor-fold>
@@ -71,6 +87,14 @@ public class CodeBreaker {
         //</editor-fold>
     }
 
+    public void colorToggleOnClick(int element, Circle circle)
+    {
+        //<editor-fold desc="...">
+        if (numbers[element] == 5){ numbers[element] = 1; }
+        else { numbers[element]++;} // Adds count if element does not represent 6 colors
+        colorChange(element, circle);
+        //</editor-fold>
+    }
 
     private void createCircle()
     {
@@ -92,10 +116,9 @@ public class CodeBreaker {
         seperate.setOrientation(Orientation.VERTICAL);
         guessing.getChildren().add(seperate);
 
-        numbers = new int[] {0, 0, 0, 0};
-        int[] feedbackPegs = codemaker.scoreGuess(numbers, code);
+        int[] feedbackPegs = codeCreator.scoreGuess(numbers, randomGeneratedCode);
 
-        for(int i = 0; i < 4; i++) // The 4 is the code length.
+        for(int i = 0; i < 4; i++) // The 4 is the codeLength.
         {
             Circle feedbackCircles = new Circle(25);
             // Checks if there is a value in the element ands fills for black pegs.
@@ -111,24 +134,28 @@ public class CodeBreaker {
                 feedbackCircles.setFill(Color.WHITE);
                 feedbackPegs[1]--;
             }
-
         }
 
-        // Win the Game
-        if (feedbackPegs[0] == 4){
+        // Win the Game by having 4 black pegs
+        if (feedbackPegs[0] == 4)
+        {
             playAgain(true);
         }
         //</editor-fold>
     }
 
-    public void playAgain(boolean win)
+    public CodeBreaker()
     {
+        //<editor-fold desc="...">
+        numbers = new int[] {0, 0, 0, 0};
+        codeCreator = new CodeMaker();
+        randomGeneratedCode = codeCreator.covertToIntegers(codeCreator.makeRandomCode());
+        //</editor-fold>
     }
-
 
     // Member variables
     int index;
-    CodeMaker codemaker;
-    int[] code;
+    CodeMaker codeCreator;
+    int[] randomGeneratedCode;
     int[] numbers;
 }
