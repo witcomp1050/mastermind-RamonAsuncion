@@ -1,11 +1,13 @@
 package me.ramonasuncion;
 
+
 import java.util.Arrays;
 import java.util.Random;
 
 
 public class CodeMaker
 {
+
     // Generates a random Code
     public String makeRandomCode()
     {
@@ -81,7 +83,7 @@ public class CodeMaker
         gussedPegs[1] = countWhitePegs;
 
         // Debug
-        System.out.print("The number of pegs" + Arrays.toString(gussedPegs));
+        System.out.print("The number of pegs" + Arrays.toString(gussedPegs) + " ");
 
         return gussedPegs;
         //</editor-fold>
@@ -99,35 +101,36 @@ public class CodeMaker
         {
             switch (characters[x]) {
                 case 'B':
-                    codeIntegers[x] = 1;
+                    codeIntegers[x] = 0;
                     break;
                 case 'G':
-                    codeIntegers[x] = 2;
+                    codeIntegers[x] = 1;
                     break;
                 case 'O':
-                    codeIntegers[x] = 3;
+                    codeIntegers[x] = 2;
                     break;
                 case 'P':
-                    codeIntegers[x] = 4;
+                    codeIntegers[x] = 3;
                     break;
                 case 'R':
-                    codeIntegers[x] = 5;
+                    codeIntegers[x] = 4;
                     break;
                 case 'Y':
+                    codeIntegers[x] = 5;
+                    break;
+                case ' ':
                     codeIntegers[x] = 6;
                     break;
             }
         }
-        // Debug
-        System.out.println("Code in ints " + Arrays.toString(codeIntegers));
 
         return codeIntegers;
         //</editor-fold>
     }
 
+
+
     // Blue, Green, Orange, Purple, Red, Yellow
     public final String[] colors = new String[]{"B", "G", "O", "P", "R", "Y"};
-
-
-   // int codeLength = getConfig().getCodeLength();
+    public int codeLength;
 }

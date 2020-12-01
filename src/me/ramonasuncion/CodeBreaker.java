@@ -31,22 +31,25 @@ public class CodeBreaker {
         //<editor-fold desc="...">
         switch(numbers[element]){
             case 0:
-                shape.setFill(Color.BLUE);
+                shape.setFill(Color.BLACK); // Blank
                 break;
             case 1:
-                shape.setFill(Color.GREEN);
+                shape.setFill(Color.BLUE);
                 break;
             case 2:
-                shape.setFill(Color.ORANGE);
+                shape.setFill(Color.GREEN);
                 break;
             case 3:
-                shape.setFill(Color.PURPLE);
+                shape.setFill(Color.ORANGE);
                 break;
             case 4:
-                shape.setFill(Color.RED);
+                shape.setFill(Color.PURPLE);
                 break;
             case 5:
-                shape.setFill(Color.YELLOW);
+                shape.setFill(Color.RED);
+                break;
+            case 6:
+                shape.setFill(Color.YELLOW); // Blank
                 break;
         }
         //</editor-fold>
@@ -55,7 +58,7 @@ public class CodeBreaker {
     public void colorToggleOnClick(int element, Circle circle)
     {
         //<editor-fold desc="...">
-        if (numbers[element] == 5){ numbers[element] = 0; } // Cycle through the 6 colors.
+        if (numbers[element] == 6){ numbers[element] = 0; } // Cycle through the 6 colors.
         else { numbers[element]++;} // Adds count if element does not represent 6 colors
         colorChange(element, circle);
         //</editor-fold>
@@ -67,16 +70,16 @@ public class CodeBreaker {
         HBox feedback = new HBox();
         feedback.setSpacing(30.0);
 
-        guessCount++; //
+        element--; // Used for positioning
 
         for(int i = 0; i < 4; i++)
         {
-            Circle createCircle = new Circle(25.0);
+            Circle createCircle = new Circle(18.0);
             feedback.getChildren().add(createCircle);
             colorChange(i, createCircle);
         }
 
-        // Seperate vertically
+        // Seperator that goes vertically
         Separator seperate = new Separator();
         seperate.setOrientation(Orientation.VERTICAL);
         feedback.getChildren().add(seperate);
@@ -85,7 +88,7 @@ public class CodeBreaker {
 
         for(int i = 0; i < 4; i++) // The 4 is the codeLength by default.
         {
-            Circle feedbackCircles = new Circle(25.0); // Feedback circles
+            Circle feedbackCircles = new Circle(18.0); // Feedback circles
 
             feedback.getChildren().add(feedbackCircles);
             // Checks if there is a value in the element ands fills for black pegs.
@@ -107,13 +110,22 @@ public class CodeBreaker {
             }
         }
 
+        // Seperator1 that goes vertically
+        Separator seperate1 = new Separator();
+        seperate1.setOrientation(Orientation.VERTICAL);
+        feedback.getChildren().add(seperate1);
+
         // Win the Game by having 4 black pegs
         if (feedbackPegs[0] == 4)
         {
             playAgain(true, stage);
         }
-        //</editor-fold>
 
+        // Starts from the bottom due to element--; and with the element value then continues to space it out.
+        setTopAnchor(feedback, element * 60.0);
+        setLeftAnchor(feedback, 280.0);
+
+        //</editor-fold>
 
         game.getChildren().add(feedback); // Get child component
     }
@@ -123,17 +135,17 @@ public class CodeBreaker {
     {
         //<editor-fold desc="...">
         Stage stage = new Stage();
+        stage.setTitle("Mastermind");
         AnchorPane game = new AnchorPane();
-        Scene scene = new Scene(game, 1000, 650);
+        Scene scene = new Scene(game, 1000, 720);
         stage.setResizable(false);
-
 
         HBox guessOptions = new HBox();
         guessOptions.setSpacing(30.0);
 
         for(int i = 0; i < 4; i++)
         {
-            Circle createCircle = new Circle(25.0);
+            Circle createCircle = new Circle(18.0);
             guessOptions.getChildren().add(createCircle);
             int tempI = i;
             createCircle.setOnMouseClicked(new EventHandler<MouseEvent>()
@@ -144,7 +156,7 @@ public class CodeBreaker {
                     colorToggleOnClick(tempI, createCircle);
                 }
             });
-            setTopAnchor(guessOptions, 30.0);
+            setTopAnchor(guessOptions, 25.0);
             setLeftAnchor(guessOptions, 280.0);
         }
 
@@ -154,41 +166,43 @@ public class CodeBreaker {
             @Override
             public void handle(ActionEvent actionEvent)
             {
-                createCircle(game, stage);
+                if (numberofRows > 0 && numberofRows <= 10) {
+                    createCircle(game, stage);
+                }
+                ++numberofRows;
             }
         });
 
         // Size for submit button
         submitGuess.setPrefHeight(50.0);
         submitGuess.setPrefWidth(100.0);
-
-        setTopAnchor(submitGuess, 25.0);
+        setTopAnchor(submitGuess, 20.0);
         setLeftAnchor(submitGuess, 150.0);
 
         game.getChildren().addAll(guessOptions, submitGuess);
 
         stage.setScene(scene);
         stage.show();
-
         //</editor-fold>
     }
 
     public CodeBreaker()
     {
         //<editor-fold desc="...">
-        numbers = new int[] {0, 0, 0, 0};
+        numbers = new int[] {-1, -1, -1, -1}; // This is to get the default color of black (blank)
         codeCreator = new CodeMaker();
         randomGeneratedCode = codeCreator.covertToIntegers(codeCreator.makeRandomCode());
-        guessCount = 0;
+        numberofRows = 0;
+        element = 12; // Element spacing
         //</editor-fold>
     }
 
     // Member variables
     //<editor-fold desc="...">
     int element;
+    int numberofRows;
     CodeMaker codeCreator;
     int[] randomGeneratedCode;
     int[] numbers;
-    int guessCount;
     //</editor-fold>
 }
