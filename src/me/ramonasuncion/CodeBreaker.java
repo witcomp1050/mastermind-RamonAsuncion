@@ -21,7 +21,7 @@ import static javafx.scene.layout.AnchorPane.setTopAnchor;
 public class CodeBreaker {
 
 
-    public void playAgain(boolean won)
+    public void playAgain(boolean won, Stage stage)
     {
 
     }
@@ -55,7 +55,7 @@ public class CodeBreaker {
     public void colorToggleOnClick(int element, Circle circle)
     {
         //<editor-fold desc="...">
-        if (numbers[element] == 5){ numbers[element] = 0; }
+        if (numbers[element] == 5){ numbers[element] = 0; } // Cycle through the 6 colors.
         else { numbers[element]++;} // Adds count if element does not represent 6 colors
         colorChange(element, circle);
         //</editor-fold>
@@ -67,6 +67,7 @@ public class CodeBreaker {
         HBox feedback = new HBox();
         feedback.setSpacing(30.0);
 
+        guessCount++; //
 
         for(int i = 0; i < 4; i++)
         {
@@ -82,25 +83,26 @@ public class CodeBreaker {
 
         int[] feedbackPegs = codeCreator.scoreGuess(numbers, randomGeneratedCode);
 
-        for(int i = 0; i < 4; i++) // The 4 is the codeLength.
+        for(int i = 0; i < 4; i++) // The 4 is the codeLength by default.
         {
-            Circle feedbackCircles = new Circle(25.0);
+            Circle feedbackCircles = new Circle(25.0); // Feedback circles
+
             feedback.getChildren().add(feedbackCircles);
             // Checks if there is a value in the element ands fills for black pegs.
 
             if(feedbackPegs[0] > 0)
             {
-                feedbackCircles.setFill(Color.BLACK);
+                feedbackCircles.setFill(Color.BLACK); // Correct position + Correct Color
                 feedbackPegs[0]--;
             }
             // Checks if there is a value in the element ands fills for white pegs.
             else if(feedbackPegs[1] > 0)
             {
-                feedbackCircles.setFill(Color.WHITE);
+                feedbackCircles.setFill(Color.WHITE); // Wrong position + Correct Color
                 feedbackPegs[1]--;
             }
             else{
-                feedbackCircles.setFill(Color.TRANSPARENT);
+                feedbackCircles.setFill(Color.TRANSPARENT); // Wrong position + Wrong Color
                 feedbackPegs[1]--;
             }
         }
@@ -108,12 +110,12 @@ public class CodeBreaker {
         // Win the Game by having 4 black pegs
         if (feedbackPegs[0] == 4)
         {
-            playAgain(true);
+            playAgain(true, stage);
         }
         //</editor-fold>
 
 
-        game.getChildren().add(feedback);
+        game.getChildren().add(feedback); // Get child component
     }
 
 
@@ -123,8 +125,7 @@ public class CodeBreaker {
         Stage stage = new Stage();
         AnchorPane game = new AnchorPane();
         Scene scene = new Scene(game, 1000, 650);
-
-
+        stage.setResizable(false);
 
 
         HBox guessOptions = new HBox();
@@ -161,8 +162,8 @@ public class CodeBreaker {
         submitGuess.setPrefHeight(50.0);
         submitGuess.setPrefWidth(100.0);
 
-        setTopAnchor(submitGuess, 20.0);
-        setLeftAnchor(submitGuess, 310.0);
+        setTopAnchor(submitGuess, 25.0);
+        setLeftAnchor(submitGuess, 150.0);
 
         game.getChildren().addAll(guessOptions, submitGuess);
 
@@ -172,13 +173,13 @@ public class CodeBreaker {
         //</editor-fold>
     }
 
-
     public CodeBreaker()
     {
         //<editor-fold desc="...">
         numbers = new int[] {0, 0, 0, 0};
         codeCreator = new CodeMaker();
         randomGeneratedCode = codeCreator.covertToIntegers(codeCreator.makeRandomCode());
+        guessCount = 0;
         //</editor-fold>
     }
 
@@ -188,5 +189,6 @@ public class CodeBreaker {
     CodeMaker codeCreator;
     int[] randomGeneratedCode;
     int[] numbers;
+    int guessCount;
     //</editor-fold>
 }
