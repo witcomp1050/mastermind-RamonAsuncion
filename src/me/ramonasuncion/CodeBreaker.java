@@ -4,13 +4,14 @@ package me.ramonasuncion;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
@@ -28,22 +29,25 @@ public class CodeBreaker {
     {
         //<editor-fold desc="...">
         Stage stage = new Stage();
+        stage.setResizable(false);
         AnchorPane play = new AnchorPane();
         Scene scene = new Scene(play, 300, 100);
         Label paragraph = new Label();
         setTopAnchor(paragraph, 10.0);
         setLeftAnchor(paragraph, 40.0);
+        stage.setResizable(false);
 
         if(winTheGame)
         {
             stage.setTitle("Mastermind: You have won!");
             paragraph.setText("Thank you for playing. " +
-                    "You have successfully beaten the mastermind!");
+                    "You have won!");
         }
         else
         {
             stage.setTitle("Mastermind: You lost!");
-            paragraph.setText("Thank you for playing. Better luck next time");
+            paragraph.setText("Thank you for playing. " +
+                    "Better luck next time");
         }
 
         Button again = new Button("Play");
@@ -190,11 +194,21 @@ public class CodeBreaker {
     public void initalizeCodeBreaker()
     {
         //<editor-fold desc="...">
-        Stage stage = new Stage();
-        stage.setTitle("Mastermind");
+
         AnchorPane game = new AnchorPane();
+        Stage stage = new Stage();
+
+        stage.setTitle("Mastermind");
         Scene scene = new Scene(game, 1000, 720);
         stage.setResizable(false);
+
+
+        // Menu Bar
+        MenuBar menuBar = new MenuBar();
+        VBox vBox = new VBox(menuBar);
+
+
+
 
         HBox guessOptions = new HBox();
         guessOptions.setSpacing(30.0);
