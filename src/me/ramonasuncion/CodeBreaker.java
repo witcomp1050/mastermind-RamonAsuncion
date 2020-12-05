@@ -32,10 +32,12 @@ public class CodeBreaker {
         stage.setResizable(false);
         AnchorPane play = new AnchorPane();
         Scene scene = new Scene(play, 300, 100);
+        stage.setResizable(false);
+
         Label paragraph = new Label();
         setTopAnchor(paragraph, 10.0);
         setLeftAnchor(paragraph, 40.0);
-        stage.setResizable(false);
+
 
         if(winTheGame)
         {
@@ -55,7 +57,6 @@ public class CodeBreaker {
         setLeftAnchor(again, 50.0);
         again.setPrefHeight(20.0);
         again.setPrefWidth(90.0);
-
 
         again.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -207,6 +208,29 @@ public class CodeBreaker {
         MenuBar menuBar = new MenuBar();
         VBox vBox = new VBox(menuBar);
 
+        Menu menu = new Menu("File");
+
+        MenuItem configGameMenuItem = new MenuItem("Configuration");
+        MenuItem exitMenuItem = new MenuItem("Exit");
+
+        menu.getItems().add(configGameMenuItem);
+        menu.getItems().add(exitMenuItem);
+
+        menuBar.getMenus().add(menu);
+
+        Menu menu1 = new Menu("Other");
+
+        MenuItem aboutMenuItem = new MenuItem("About");
+
+        menu1.getItems().add(aboutMenuItem);
+
+        menuBar.getMenus().add(menu1);
+
+        // Scene scene = new Scene(vBox, 960, 600);
+
+
+
+
 
 
 
@@ -237,7 +261,7 @@ public class CodeBreaker {
             public void handle(ActionEvent actionEvent)
             {
                 numberofRows++;
-                if (numberofRows > 0 && numberofRows <= 10)
+                if (numberofRows > 0 && numberofRows <= 10) // the 10 is the number of rows
                 {
                     createCircle(game, stage);
                 }
