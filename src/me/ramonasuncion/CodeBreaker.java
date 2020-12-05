@@ -4,12 +4,10 @@ package me.ramonasuncion;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -141,22 +139,18 @@ public class CodeBreaker {
             colorChange(i, createCircle);
         }
 
-        // Seperator that goes vertically
+        // Seperator that goes HORIZONTAL
         Separator seperate = new Separator();
-        seperate.setOrientation(Orientation.VERTICAL);
+        seperate.setOrientation(Orientation.HORIZONTAL);
         feedback.getChildren().add(seperate);
 
         int[] feedbackPegs = codeCreator.scoreGuess(numbers, randomGeneratedCode);
 
-        // Win the Game by having 4 black pegs
-        if (feedbackPegs[0] == 4)
-        {
-            playAgain(true, stage);
-        }
+        if (feedbackPegs[0] == 4) { playAgain(true, stage); }  // Win the Game by having 4 black pegs
 
         for(int i = 0; i < 4; i++) // The 4 is the codeLength by default.
         {
-            Circle feedbackCircles = new Circle(18.0); // Feedback circles
+            Circle feedbackCircles = new Circle(15.0); // Feedback circles
 
             feedback.getChildren().add(feedbackCircles);
             // Checks if there is a value in the element ands fills for black pegs.
@@ -172,16 +166,12 @@ public class CodeBreaker {
                 feedbackCircles.setFill(Color.WHITE); // Wrong position + Correct Color
                 feedbackPegs[1]--;
             }
-            else{
+            else
+            {
                 feedbackCircles.setFill(Color.TRANSPARENT); // Wrong position + Wrong Color
                 feedbackPegs[1]--;
             }
         }
-
-        // Seperator1 that goes vertically
-        Separator seperate1 = new Separator();
-        seperate1.setOrientation(Orientation.VERTICAL);
-        feedback.getChildren().add(seperate1);
 
         // Starts from the bottom due to element--; and with the element value then continues to space it out.
         setTopAnchor(feedback, element * 60.0);
