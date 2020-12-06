@@ -17,7 +17,7 @@
       <CheckBox layoutX="174.0" layoutY="200.0" mnemonicParsing="false" />
       <Label layoutX="203.0" layoutY="196.0" prefHeight="25.0" prefWidth="72.0" text="Duplicates" />
       <Label layoutX="203.0" layoutY="143.0" prefHeight="25.0" prefWidth="64.0" text="Blanks" />
-      <MenuButton layoutX="382.0" layoutY="144.0" mnemonicParsing="false" text="10">
+      <MenuButton layoutX="384.0" layoutY="197.0" mnemonicParsing="false" text="10">
         <items>
           <MenuItem mnemonicParsing="false" text="10" />
           <MenuItem mnemonicParsing="false" text="12" />
@@ -30,5 +30,7 @@
             <Font size="40.0" />
          </font>
       </Label>
+      <MenuButton layoutX="387.0" layoutY="144.0" mnemonicParsing="false" opacity="0.48" text="4" />
+      <Label layoutX="286.0" layoutY="200.0" text="Number of Rows" />
    </children>
 </Pane>
