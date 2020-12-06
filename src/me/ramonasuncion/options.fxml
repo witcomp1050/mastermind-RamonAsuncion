@@ -11,13 +11,13 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="300.0" layoutY="295.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="72.0" text="Exit" />
-      <Button layoutX="210.0" layoutY="295.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="72.0" text="Save" />
-      <CheckBox layoutX="174.0" layoutY="151.0" mnemonicParsing="false" />
-      <CheckBox layoutX="174.0" layoutY="200.0" mnemonicParsing="false" />
+      <Button fx:id="exitConfig" layoutX="300.0" layoutY="295.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="72.0" text="Exit" />
+      <Button fx:id="saveConfig" layoutX="210.0" layoutY="295.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="72.0" text="Save" />
+      <CheckBox fx:id="blanksAllowed" layoutX="174.0" layoutY="151.0" mnemonicParsing="false" />
+      <CheckBox fx:id="duplicatesAllowed" layoutX="174.0" layoutY="200.0" mnemonicParsing="false" />
       <Label layoutX="203.0" layoutY="196.0" prefHeight="25.0" prefWidth="72.0" text="Duplicates" />
       <Label layoutX="203.0" layoutY="143.0" prefHeight="25.0" prefWidth="64.0" text="Blanks" />
-      <MenuButton layoutX="384.0" layoutY="197.0" mnemonicParsing="false" text="10">
+      <MenuButton fx:id="numberOfRows" layoutX="384.0" layoutY="197.0" mnemonicParsing="false" text="10">
         <items>
           <MenuItem mnemonicParsing="false" text="10" />
           <MenuItem mnemonicParsing="false" text="12" />
