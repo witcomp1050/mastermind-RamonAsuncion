@@ -3,7 +3,10 @@ package me.ramonasuncion;
 //<editor-fold desc="imports">
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
+import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -14,6 +17,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 import static javafx.scene.layout.AnchorPane.setLeftAnchor;
 import static javafx.scene.layout.AnchorPane.setTopAnchor;
@@ -91,7 +96,7 @@ public class CodeBreaker {
         //<editor-fold desc="...">
         switch(numbers[element]){
             case 0:
-                shape.setFill(Color.BLACK); // Blank
+                shape.setFill(Color.BLACK); // Blank Peg
                 break;
             case 1:
                 shape.setFill(Color.BLUE);
@@ -182,61 +187,47 @@ public class CodeBreaker {
     }
 
 
-    public void initalizeCodeBreaker()
-    {
+    public void initalizeCodeBreaker() {
         //<editor-fold desc="...">
 
         AnchorPane game = new AnchorPane();
         Stage stage = new Stage();
 
         stage.setTitle("Mastermind");
-        Scene scene = new Scene(game, 1000, 720);
+        Scene scene = new Scene(game, 1000, 800);
         stage.setResizable(false);
 
 
         // Menu Bar
         MenuBar menuBar = new MenuBar();
         VBox vBox = new VBox(menuBar);
-
         Menu menu = new Menu("File");
-
         MenuItem configGameMenuItem = new MenuItem("Configuration");
         MenuItem exitMenuItem = new MenuItem("Exit");
-
         menu.getItems().add(configGameMenuItem);
         menu.getItems().add(exitMenuItem);
-
         menuBar.getMenus().add(menu);
-
         Menu menu1 = new Menu("Other");
-
         MenuItem aboutMenuItem = new MenuItem("About");
-
         menu1.getItems().add(aboutMenuItem);
-
         menuBar.getMenus().add(menu1);
 
-        // Scene scene = new Scene(vBox, 960, 600);
+        menuBar.setPrefHeight(10.0);
+        menuBar.setPrefWidth(1000.0);
 
-
-
-
-
+        game.getChildren().add(vBox);
 
 
         HBox guessOptions = new HBox();
         guessOptions.setSpacing(30.0);
 
-        for(int i = 0; i < 4; i++)
-        {
+        for (int i = 0; i < 4; i++) {
             Circle createCircle = new Circle(23.0);
             guessOptions.getChildren().add(createCircle);
             int tempI = i;
-            createCircle.setOnMouseClicked(new EventHandler<MouseEvent>()
-            {
+            createCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
-                public void handle(MouseEvent mouseEvent)
-                {
+                public void handle(MouseEvent mouseEvent) {
                     colorToggleOnClick(tempI, createCircle);
                 }
             });
@@ -245,17 +236,14 @@ public class CodeBreaker {
         }
 
         Button submitGuess = new Button("Submit Guess");
-        submitGuess.setOnAction(new EventHandler<ActionEvent>()
-        {
+        submitGuess.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent)
-            {
+            public void handle(ActionEvent actionEvent) {
                 numberofRows++;
                 if (numberofRows > 0 && numberofRows <= 10) // the 10 is the number of rows
                 {
                     createCircle(game, stage);
-                }
-                else{
+                } else {
                     playAgain(false, stage);
                 }
             }
@@ -281,13 +269,13 @@ public class CodeBreaker {
         codeCreator = new CodeMaker();
         randomGeneratedCode = codeCreator.covertToIntegers(codeCreator.makeRandomCode());
         numberofRows = 0;
-        element = 12; // Element spacing
+        element = 13.5; // Element spacing (Where it starts at the bottom)
         //</editor-fold>
     }
 
     // Member variables
     //<editor-fold desc="...">
-    int element;
+    double element;
     int numberofRows;
     CodeMaker codeCreator;
     int[] randomGeneratedCode;
