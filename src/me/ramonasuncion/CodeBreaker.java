@@ -3,6 +3,7 @@ package me.ramonasuncion;
 //<editor-fold desc="imports">
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
 import javafx.scene.Group;
@@ -25,12 +26,18 @@ import static javafx.scene.layout.AnchorPane.setTopAnchor;
 //</editor-fold>
 
 
-public class CodeBreaker {
+public class CodeBreaker
+{
+
+    @FXML
+    MenuItem openConfiguration;
+
+    @FXML
+    MenuItem openAbout;
 
 
     public void playAgain(boolean winTheGame, Stage stag)
     {
-        //<editor-fold desc="...">
         Stage stage = new Stage();
         stage.setResizable(false);
         AnchorPane play = new AnchorPane();
@@ -78,7 +85,8 @@ public class CodeBreaker {
         leave.setPrefWidth(90.0);
 
 
-        leave.setOnAction(new EventHandler<ActionEvent>() {
+        leave.setOnAction(new EventHandler<ActionEvent>()
+        {
           @Override
           public void handle(ActionEvent event) { System.exit(0); }
           });
@@ -88,12 +96,10 @@ public class CodeBreaker {
 
         stage.setScene(scene);
         stage.show();
-        //</editor-fold>
     }
 
     public void colorChange(int element, Shape shape)
     {
-        //<editor-fold desc="...">
         switch(numbers[element]){
             case 0:
                 shape.setFill(Color.BLACK); // Blank Peg
@@ -117,21 +123,17 @@ public class CodeBreaker {
                 shape.setFill(Color.YELLOW); // Blank
                 break;
         }
-        //</editor-fold>
     }
 
     public void colorToggleOnClick(int element, Circle circle)
     {
-        //<editor-fold desc="...">
         if (numbers[element] == 6){ numbers[element] = 0; } // Cycle through the 6 colors.
         else { numbers[element]++;} // Adds count if element does not represent 6 colors
         colorChange(element, circle);
-        //</editor-fold>
     }
 
     private void createCircle(AnchorPane game, Stage stage)
     {
-        //<editor-fold desc="...">
         HBox feedback = new HBox();
         feedback.setSpacing(30.0);
 
@@ -183,13 +185,26 @@ public class CodeBreaker {
         setLeftAnchor(feedback, 305.0);
 
         game.getChildren().add(feedback); // Get child component
-        //</editor-fold>
     }
 
+//
+//    public void openConfiguration() throws IOException
+//    {
+//        Stage stage = (Stage) openConfiguration.getScene().getWindow();
+//        stage.close();
+//        Parent root = FXMLLoader.load(getClass().getResource("options.fxml"));
+//        Stage pref = new Stage();
+//        pref.setTitle("Mastermind Configuration");
+//
+//        pref.setScene(new Scene(root,600,400));
+//
+//        pref.setResizable(false);
+//        pref.show();
+//    }
 
-    public void initalizeCodeBreaker() {
-        //<editor-fold desc="...">
 
+    public void initalizeCodeBreaker()
+    {
         AnchorPane game = new AnchorPane();
         Stage stage = new Stage();
 
@@ -197,26 +212,38 @@ public class CodeBreaker {
         Scene scene = new Scene(game, 1000, 800);
         stage.setResizable(false);
 
-
         // Menu Bar
         MenuBar menuBar = new MenuBar();
         VBox vBox = new VBox(menuBar);
+
+        // Menu options 1
         Menu menu = new Menu("File");
         MenuItem configGameMenuItem = new MenuItem("Configuration");
         MenuItem exitMenuItem = new MenuItem("Exit");
+
+        // Setups an id for the menu item
+        configGameMenuItem.setId("openConfiguration");
+
         menu.getItems().add(configGameMenuItem);
         menu.getItems().add(exitMenuItem);
         menuBar.getMenus().add(menu);
+
+        // Menu options 2
         Menu menu1 = new Menu("Other");
         MenuItem aboutMenuItem = new MenuItem("About");
+
+        // Setups an id fpr the menu item
+        aboutMenuItem.setId("openAbout");
+
         menu1.getItems().add(aboutMenuItem);
         menuBar.getMenus().add(menu1);
 
+        // Create the size of the bar
         menuBar.setPrefHeight(10.0);
         menuBar.setPrefWidth(1000.0);
 
+        // Adds it to the vBox
         game.getChildren().add(vBox);
-
 
         HBox guessOptions = new HBox();
         guessOptions.setSpacing(30.0);
@@ -225,22 +252,27 @@ public class CodeBreaker {
             Circle createCircle = new Circle(23.0);
             guessOptions.getChildren().add(createCircle);
             int tempI = i;
-            createCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            createCircle.setOnMouseClicked(new EventHandler<MouseEvent>()
+            {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     colorToggleOnClick(tempI, createCircle);
                 }
             });
-            setTopAnchor(guessOptions, 25.0);
+
+            // Location of the 4 black guessing buttons
+            setTopAnchor(guessOptions, 30.0);
             setLeftAnchor(guessOptions, 280.0);
         }
 
         Button submitGuess = new Button("Submit Guess");
-        submitGuess.setOnAction(new EventHandler<ActionEvent>() {
+        submitGuess.setOnAction(new EventHandler<ActionEvent>()
+        {
             @Override
-            public void handle(ActionEvent actionEvent) {
-                numberofRows++;
-                if (numberofRows > 0 && numberofRows <= 10) // the 10 is the number of rows
+            public void handle(ActionEvent actionEvent)
+            {
+                startNumberofRows++; // Adds until it fills up the maximum rows
+                if (startNumberofRows > 0 && startNumberofRows <= 10) // the 10 is the number of rows
                 {
                     createCircle(game, stage);
                 } else {
@@ -252,31 +284,30 @@ public class CodeBreaker {
         // Size for submit button
         submitGuess.setPrefHeight(50.0);
         submitGuess.setPrefWidth(100.0);
-        setTopAnchor(submitGuess, 20.0);
+
+        // Location for the Sumbit Guess button
+        setTopAnchor(submitGuess, 30.0);
         setLeftAnchor(submitGuess, 150.0);
 
         game.getChildren().addAll(guessOptions, submitGuess);
 
         stage.setScene(scene);
         stage.show();
-        //</editor-fold>
     }
 
     public CodeBreaker()
     {
-        //<editor-fold desc="...">
         numbers = new int[] {-1, -1, -1, -1}; // This is to get the default color of black (blank)
         codeCreator = new CodeMaker();
         randomGeneratedCode = codeCreator.covertToIntegers(codeCreator.makeRandomCode());
-        numberofRows = 0;
+        startNumberofRows = 0;
         element = 13.5; // Element spacing (Where it starts at the bottom)
-        //</editor-fold>
     }
 
     // Member variables
     //<editor-fold desc="...">
     double element;
-    int numberofRows;
+    int startNumberofRows;
     CodeMaker codeCreator;
     int[] randomGeneratedCode;
     int[] numbers;

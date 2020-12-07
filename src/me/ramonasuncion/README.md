@@ -1,18 +1,3 @@
-# Wentworth Institute of Technology
-## COMP1050
-## Project: Mastermind Game
-
-Last updated: 24-July-2020
-
-### Description
-Welcome to the world of international espionage and secret codes. *Mastermind* is a classic board game where a
-*CodeMaker* builds a secret code with colored pegs and a *CodeBreaker* has a number of guesses to break the
-code, using feedback provide by the *CodeMaker*.
-
-In this project, you will build a one-round game of *Mastermind*, with the option of going beyond
-for extra credit. 
-
-Note: The course syllabus suggests an order and timing for your development. That said, you are welcome to develop the game in any order that makes sense to you, and at your own pace, so long as the project is completed by the due date. 
 
 ### Requirements
 * The computer will be the CodeMaker
@@ -96,7 +81,6 @@ more confusing. As a general rule: _get the data structures and algorithms worki
 to ensure that when you add a GUI, you don't need to worry about the application's foundation. 
 
 ---
-
 
 ## Collected from videos
 

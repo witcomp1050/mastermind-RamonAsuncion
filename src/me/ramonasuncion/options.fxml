@@ -13,11 +13,11 @@
    <children>
       <Button fx:id="exitConfig" layoutX="300.0" layoutY="295.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="72.0" text="Exit" />
       <Button fx:id="saveConfig" layoutX="210.0" layoutY="295.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="72.0" text="Save" />
-      <CheckBox fx:id="blanksAllowed" layoutX="174.0" layoutY="151.0" mnemonicParsing="false" />
+      <CheckBox fx:id="blanksAllowed" layoutX="174.0" layoutY="147.0" mnemonicParsing="false" />
       <CheckBox fx:id="duplicatesAllowed" layoutX="174.0" layoutY="200.0" mnemonicParsing="false" />
       <Label layoutX="203.0" layoutY="196.0" prefHeight="25.0" prefWidth="72.0" text="Duplicates" />
       <Label layoutX="203.0" layoutY="143.0" prefHeight="25.0" prefWidth="64.0" text="Blanks" />
-      <MenuButton fx:id="numberOfRows" layoutX="384.0" layoutY="197.0" mnemonicParsing="false" text="10">
+      <MenuButton fx:id="numberOfRows" layoutX="387.0" layoutY="196.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="38.0">
         <items>
           <MenuItem mnemonicParsing="false" text="10" />
           <MenuItem mnemonicParsing="false" text="12" />
