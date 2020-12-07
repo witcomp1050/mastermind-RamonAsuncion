@@ -1,52 +1,86 @@
 package me.ramonasuncion;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 import org.apache.commons.configuration2.PropertiesConfiguration;
-import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
+import org.apache.commons.configuration2.ex.ConfigurationException;
 
 
-public class Configuration
-{
-    // Member variables
-    private boolean duplicationsAreAllowed;
-    private boolean blanksAreAllowed;
-    private int codeLength;
-    private int numberOfRows;
+import java.io.*;
+import java.net.URL;
+import java.util.Properties;
+
+public class Configuration {
+
+    Configurations configure = new Configurations();
+
 
     // Get the properties file
-    public Configuration(String propertiesFileName)
-    {
-        //<editor-fold desc="...">
+    public Configuration() {
         try {
-            File configFile = new File(getClass().getResource(propertiesFileName).getFile());
-            Configurations configurations = new Configurations();
+            File _configFile = new File(getClass().getResource("mmind.properties").getFile());
 
-            if (!configFile.exists() && configFile.isDirectory())
-            {
+            if (!_configFile.exists()) {
+                System.out.println("WeirdChamp");
                 defaults();
+            } else {
+                System.out.println("OkayChamp");
+                _config = configure.properties(_configFile);
             }
-            else {
-                PropertiesConfiguration config = configurations.properties(configFile);
-            }
-        } catch(ConfigurationException cex)
-        {
-            System.out.println(cex.getMessage());
-            System.exit(1);
+
+        } catch (ConfigurationException cex) {
+            System.out.println("What the fuck!");
+            cex.printStackTrace();
+            System.exit(-1);
         }
-        //</editor-fold>
+
     }
 
+//    public int getCodeSize()
+//    {
+//        int codeSize = 4;
+
+//        configurationFile();
+//        codeSize = _config.getInt("codeSize");
+
+//        return codeSize;
+//    }
+//
+//    public int getCodePegRows()
+//    {
+//        int codePegRows = 10;
+
+//        configurationFile();
+//        codePegRows = _config.getInt("codePegRows");
+
+//        return codePegRows;
+//    }
+//
+//
+//    public boolean getDuplicationsAllowedInCode()
+//    {
+//        boolean dupsAllowedInCode = true;
+
+//        configurationFile();
+//        dupsAllowedInCode = _config.getBoolean("dupsAllowedInCode");
+
+//        return dupsAllowedInCode;
+//    }
+//
+//    public boolean getBanksAllowedInCode() throws ConfigurationException {
+//        boolean blanksAllowedInCode = false;
+
+//        configurationFile();
+//        blanksAllowedInCode = _config.getBoolean("blanksAllowedInCode");
+
+//        return blanksAllowedInCode;
+//    }
+//
+
     // Rewrites the mmind.properties file if not found
-    public void defaults()
-    {
-        //<editor-fold desc="...">
-        try
-        {
-            FileWriter writeMMIND = new FileWriter("assets/mmind.properties");
+    public void defaults() {
+        try {
+            FileWriter writeMMIND = new FileWriter("mmind.properties");
             writeMMIND.write("# Mastermind Properties File (mmind.properties)\n" +
                     "codeSize = 4\n" +
                     "codePegRows = 10\n" +
@@ -55,18 +89,12 @@ public class Configuration
                     "playSounds = true\n" +
                     "maxTime = 0");
             writeMMIND.close();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println("Error unoccured in creating default file ");
             e.printStackTrace();
         }
-        //</editor-fold>
     }
 
-    // (Encapsulation) Methods to get the variable value of private class variables.
-    public boolean isDuplicationsAreAllowed() { return duplicationsAreAllowed; }
-    public boolean isBlanksAreAllowed() { return blanksAreAllowed; }
-    public int getCodeLength() { return codeLength; }
-    public int getNumberOfRows() { return numberOfRows; }
+    //   // Member Variable
+    private PropertiesConfiguration _config;
 }
