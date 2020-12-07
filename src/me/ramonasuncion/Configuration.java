@@ -21,61 +21,58 @@ public class Configuration {
             File _configFile = new File(getClass().getResource("mmind.properties").getFile());
 
             if (!_configFile.exists()) {
-                System.out.println("WeirdChamp");
                 defaults();
             } else {
-                System.out.println("OkayChamp");
                 _config = configure.properties(_configFile);
             }
 
         } catch (ConfigurationException cex) {
-            System.out.println("What the fuck!");
             cex.printStackTrace();
             System.exit(-1);
         }
 
     }
 
-//    public int getCodeSize()
-//    {
-//        int codeSize = 4;
+    public int getCodeSize()
+    {
+        int codeSize = 4;
 
-//        configurationFile();
-//        codeSize = _config.getInt("codeSize");
+        new Configuration();
+        codeSize = _config.getInt("codeSize");
 
-//        return codeSize;
-//    }
-//
-//    public int getCodePegRows()
-//    {
-//        int codePegRows = 10;
+        return codeSize;
+    }
 
-//        configurationFile();
-//        codePegRows = _config.getInt("codePegRows");
+    public int getCodePegRows()
+    {
+        int codePegRows = 10;
 
-//        return codePegRows;
-//    }
-//
-//
-//    public boolean getDuplicationsAllowedInCode()
-//    {
-//        boolean dupsAllowedInCode = true;
+        new Configuration();
+        codePegRows = _config.getInt("codePegRows");
 
-//        configurationFile();
-//        dupsAllowedInCode = _config.getBoolean("dupsAllowedInCode");
+        return codePegRows;
+    }
 
-//        return dupsAllowedInCode;
-//    }
-//
-//    public boolean getBanksAllowedInCode() throws ConfigurationException {
-//        boolean blanksAllowedInCode = false;
 
-//        configurationFile();
-//        blanksAllowedInCode = _config.getBoolean("blanksAllowedInCode");
+    public boolean getDuplicationsAllowedInCode()
+    {
+        boolean dupsAllowedInCode = true;
 
-//        return blanksAllowedInCode;
-//    }
-//
+        new Configuration();
+        dupsAllowedInCode = _config.getBoolean("dupsAllowedInCode");
+
+        return dupsAllowedInCode;
+    }
+
+    public boolean getBanksAllowedInCode() throws ConfigurationException {
+        boolean blanksAllowedInCode = false;
+
+        new Configuration();
+        blanksAllowedInCode = _config.getBoolean("blanksAllowedInCode");
+
+        return blanksAllowedInCode;
+    }
+
 
     // Rewrites the mmind.properties file if not found
     public void defaults() {
