@@ -4,8 +4,6 @@ import javafx.application.Application;
 
 import javafx.stage.Stage;
 
-import java.io.File;
-
 
 public class Main extends Application
 {
@@ -13,7 +11,7 @@ public class Main extends Application
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        (new CodeBreaker()).initalizeCodeBreaker();
+        (new Mastermind()).initalizeCodeBreaker();
 
     }
 }
