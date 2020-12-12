@@ -191,7 +191,6 @@ public class Mastermind
 
         game.setStyle("-fx-background-color: #7b7b7b7b");
 
-
         // Menu Bar
         MenuBar menuBarMain = new MenuBar();
         VBox vBox = new VBox(menuBarMain);
@@ -234,7 +233,7 @@ public class Mastermind
             public void handle(ActionEvent event)
             {
                 try {
-                    openConfiguration(stage);
+                    openConfiguration();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -287,19 +286,19 @@ public class Mastermind
         stage.show();
     }
 
-    public void openConfiguration(Stage stage) throws IOException {
+    public void openConfiguration() throws IOException
+    {
+        Stage window = new Stage();
+
         Parent root = FXMLLoader.load(getClass().getResource("options.fxml"));
 
         Scene scene = new Scene(root);
 
-        stage.setTitle("Mastermind Configuration");
-        stage.setScene(scene);
-        stage.show();
-
-//        exitConfig.setOnAction((event) -> {
-//            System.out.println("Button clicked");
-//        });
+        window.setTitle("Mastermind Configuration");
+        window.setScene(scene);
+        window.show();
     }
+
 
 
     public Mastermind()
